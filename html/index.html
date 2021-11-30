@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+</head>
+
+<body>
+    <h1>Documentation for fair use.</h1>
+    <ul>
+        <h1>User</h1>
+        <li>
+            <h2>Sign Up</h2>
+            <b>POST</b>
+            <a href="/api/signup">/api/signup</a>
+            <pre>
+                <h3>POST Schema:</h3>
+                {
+                    "name":string,
+                    "email":string,
+                    "password":string,
+                    "role":int (0 for User 1 for Admin)
+                }
+            </pre>
+            <pre>
+                <h3>Response: </h3>
+                {
+                    "name": string,
+                    "email": string,
+                    "encry_password": encrypted string,
+                    "salt": salt,
+                    "role": int,
+                    "_id": string,
+                    "createdAt": timestamp,
+                    "updatedAt": timestamp,
+                    "__v": int
+                  }
+            </pre>
+        </li>
+        <li>
+            <h2>Sign In</h2>
+            <b>POST</b>
+            <a href="/api/signin">/api/signin</a>
+            <pre>
+                    <h3>POST Schema:</h3>
+                    {
+                        "email":string,
+                        "password":string,
+                    }
+                </pre>
+            <pre>
+                    <h3>Response: </h3>
+                    {
+                        "token": token,
+                        "user": {
+                          "_id": stirng,
+                          "name": string,
+                          "email": string,
+                          "role": int
+                        }
+                      }
+                </pre>
+        </li>
+        <li>
+            <h2>Get Single User</h2>
+            <b>GET</b>
+            <a href="/api/user/{userId}">/api/user/{userId}</a>
+            <p> <b>Note: </b>Only for Admin</p>
+            <pre>
+                <h3>Response: </h3>
+                {
+                    "_id": string,
+                    "name": string,
+                    "lastName": string,
+                    "email": string,
+                    "role": int,
+                    "createdAt": timestamp,
+                    "__v": int
+                }
+            </pre>
+        </li>
+        <li>
+            <h2>Get All Users</h2>
+            <b>GET</b>
+            <a href="/api/users">/api/users</a>
+            <p> <b>Note: </b>Only for Admin</p>
+            <pre>
+                <h3>Response: </h3>
+                [
+                    {
+                        "_id": string,
+                        "name": string,
+                        "lastName": string,
+                        "email": string,
+                        "role": int,
+                        "createdAt": timestamp,
+                        "__v": int
+                    }
+                    ...
+                    ... 
+                    ...
+                ]
+            </pre>
+        </li>
+        <h1><b>Attendance</b></h1>
+        <li>
+            <h2>Mark Attendance</h2>
+            <b>POST</b>
+            <a href="/api/markAttendance">/api/markAttendance</a>
+            <pre>
+                <h3>POST Schema: </h3>
+                {
+                    "present": boolean,
+                    "date": Date (Default: Current Date)
+                }
+            </pre>
+            <pre>
+                <h3>Response:</h3>
+                {
+                    "attendance": {
+                      "present": boolean,
+                      "_id": string,
+                      "date": timestamp,
+                      "createdAt": timestamp,
+                      "updatedAt": timestamp,
+                      "__v": int
+                    }
+                  }
+            </pre>
+        </li>
+        <li>
+            <h2>Get Attendance</h2>
+            <b>GET</b>
+            <a href="/api/getAttendance">/api/getAttendance</a>
+            <pre>
+                <h3>Response:</h3>
+                [
+                    {
+                        "attendance": {
+                        "present": boolean,
+                        "_id": string,
+                        "date": timestamp,
+                        "createdAt": timestamp,
+                        "updatedAt": timestamp,
+                        "__v": int
+                        }
+                    }
+                    ... 
+                    ... 
+                    ...
+                ]
+            </pre>
+        </li>
+        <h1><b>Invoice</b></h1>
+        <li>
+            <h2>Create Invoice</h2>
+            <b>POST</b>
+            <a href="/api/createInvoice">/api/createInvoice</a>
+            <pre>
+                <h3>POST Schema:</h3>
+                {
+                    "shopName":string,
+                    "shopAddress":string,
+                    "itemRequired":string,
+                    "itemQuantity":int,
+                    "paymentRcvd":boolean,
+                    "dueBalance":int
+                }
+            </pre>
+        </li>
+        <h1><b>Tracker</b></h1>
+        <li>
+            <h2>Create Tracker</h2>
+            <b>POST</b>
+            <a href="/api/createTracker">/api/createTracker</a>
+            <pre>
+                <h3>POST Schema:</h3>
+                from: {
+                    lat : int,
+                    long : int,
+                  },
+                  to: {
+                    lat : int,
+                    long : int,
+                  },
+                  weekDay: string
+                  date: Date
+                }
+            </pre>
+            <pre>
+                <h3>Response:</h3>
+                {
+                    from: {
+                        lat : int,
+                        long : int,
+                    },
+                    to: {
+                        lat : int,
+                        long : int,
+                    },
+                    weekDay: string
+                    date: Date
+                }
+            </pre>
+        </li>
+        <li>
+            <h2>Get All Trackers</h2>
+            <b>GET</b>
+            <a href="/api/getTracker">/api/getTracker</a>
+            <pre>
+                <h3>Response:</h3>
+                [
+                    {
+                        from: {
+                            lat : int,
+                            long : int,
+                        },
+                        to: {
+                            lat : int,
+                            long : int,
+                        },
+                        weekDay: string
+                        date: Date
+                    }
+                ]
+            </pre>
+        </li>
+    </ul>
+</body>
+
+</html>

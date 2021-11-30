@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const Order = require("../models/order");
 
 // Get user by ID
 exports.getUserById = (req, res, next, id) => {
@@ -25,16 +24,16 @@ exports.getUser = (req, res) => {
 };
 
 // Get All Users
-// exports.getAllUsers = (req, res) => {
-//   User.find().exec((err, users) => {
-//     if (err || !users) {
-//       res.json({
-//         err: "Error finding users",
-//       });
-//     }
-//     res.json(users);
-//   });
-// };
+exports.getAllUsers = (req, res) => {
+  User.find().exec((err, users) => {
+    if (err || !users) {
+      res.json({
+        err: "Error finding users",
+      });
+    }
+    res.json(users);
+  });
+};
 
 exports.updateUser = (req, res) => {
   User.findByIdAndUpdate(
