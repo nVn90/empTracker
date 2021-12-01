@@ -8,6 +8,9 @@ const app = express();
 const path = require("path")
 const PORT = process.env.PORT || 3334;
 
+// setting up view engine
+app.set("view engine", "ejs")
+
 // importing routes
 const authRoutes = require("./routes/auth")
 const userRoutes = require("./routes/user")
